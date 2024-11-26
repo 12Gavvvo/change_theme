@@ -1,35 +1,21 @@
-import {useEffect, useState} from "react";
+
+import ThemeButton from "./components/ThemeButton.jsx";
+import Form from "./components/Form.jsx";
 
 
 
 export default function App() {
-    const [theme,setTheme] = useState(() => {
-        if (window.matchMedia('(prefers-color-scheme: dark)').matches) {
-            return 'dark'
-        }
-        else {
-            return 'light'
-        }
-    })
-    function handleChangeTheme() {
-        setTheme(prevTheme => prevTheme === 'light' ? 'dark' : 'light')
-    }
+    return(
+        //<ThemeButton/>
+       <div className={"flex w-full h-svh"} >
+           <div className={"w-full lg:w-1/2 flex items-center justify-center"}>
+               <Form/>
+           </div>
+           <div className={'w-1/2 hidden relative lg:flex h-full bg-gradient-to-tr from-gray-500 to-pink-500 items-center justify-center'}>
+               <div className={'w-60 h-60 bg-gradient-to-tr from-red-500 to-pink-500 rounded-full  animate-spin'}></div>
+               <div className={'w-full h-1/2 bottom-0 absolute bg-blue-600/40 backdrop-blur-lg   '}></div>
+           </div>
 
-    useEffect(() => {
-        if(theme === 'dark')
-        {
-            document.querySelector('html').classList.add('dark')
-        }
-        else {
-            document.querySelector('html').classList.remove('dark')
-        }
-    }, [theme]);
-    return (
-        <>
-            <div  className={'h-screen flex justify-center items-center dark:bg-neutral-800'}>
-                <button onClick={handleChangeTheme} className={'bg-slate-200 px-4 py-2 rounded hover:bg-slate-300 dark:bg-slate-950 dark:text-white dark:hover:bg-slate-900'}>Change Theme</button>
-            </div>
-        </>
-
+       </div>
     )
 }
